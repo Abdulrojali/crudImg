@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            width: 80%;
+        }
+        .content{
+            width:100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fill,minmax(500px,1fr));
+            justify-content: center;
+            align-items: center;
+            grid-gap: 30px;
+        }
+        .col{
+            border: 1px solid gray;
+            padding: 20px;
+        }
+        .container{
+            display: flex;
+            flex-direction: column;
+            margin: auto;
+        }
+        .heading1{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+        .heading1 h1{
+            font-size: 2.5em;
+            text-transform: capitalize;
+        }
+        a{
+            text-decoration: none;
+            color: black;
+            padding: 5px 10px;
+            border: 1px solid gray;
+        }
+        .anchor{
+            margin-top: 50px;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        button{
+            padding: 5px 10px;
+            border: 1px solid gray;
+        }
+        button:hover{
+            cursor: pointer;
+            opacity: .8;
+        }
+        .judul{
+            text-transform: capitalize;
+            font-size: 2em;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heading1">
+            <h1>all img</h1>
+            <a href="/upload">add new </a>
+        </div>
+        <div class="content">
+            <% for (let i =0; i<getImg.length; i++){%>
+            <div class="col">
+                <img src="http://localhost:8080/upload/<%=getImg[i].nama%>" alt="">
+                <h1 class="judul"> <%= getImg[i].nama%></h1>
+                <div class="anchor">
+                    <a href="/viewsImg/<%=getImg[i]._id%>">view</a>
+                    <a href="/update/<%=getImg[i]._id%>">update</a>
+                    <form action="/delete/<%=getImg[i]._id%>?_method=DELETE" method="post">
+                        <button type="submit">delete</button>
+                    </form>
+                </div>
+
+            </div>
+        <%}%>
+        </div>
+    </div>
+</body>
+</html>
